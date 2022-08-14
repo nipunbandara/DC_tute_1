@@ -23,18 +23,18 @@ namespace DataBase
 
 
             DBGenerator user2 = new DBGenerator();
-            user1.firstName = "Gman2";
-            user1.lastName = "BlaBla2";
-            user1.acctNo = 561652;
-            user1.balance = 200000;
-            user1.pin = 2222;
+            user2.firstName = "Gman2";
+            user2.lastName = "BlaBla2";
+            user2.acctNo = 561652;
+            user2.balance = 200000;
+            user2.pin = 2222;
 
             DBGenerator user3 = new DBGenerator();
-            user1.firstName = "Gman3";
-            user1.lastName = "BlaBla3";
-            user1.acctNo = 561653;
-            user1.balance = 300000;
-            user1.pin = 3333;
+            user3.firstName = "Gman3";
+            user3.lastName = "BlaBla3";
+            user3.acctNo = 561653;
+            user3.balance = 300000;
+            user3.pin = 3333;
 
             dataStruct.Add(user1);
             dataStruct.Add(user2);
@@ -44,12 +44,12 @@ namespace DataBase
 
         public uint GetAcctNoByIndex(int index)
         {
-            return dataStruct[index - 1].acctNo;
+            return dataStruct[index -1].acctNo;
         }
 
         public uint GetPINByIndex(int index)
         {
-            return dataStruct[index - 1].pin;
+            return dataStruct[index -1].pin;
         }
         public string GetFirstNameByIndex(int index)
         {

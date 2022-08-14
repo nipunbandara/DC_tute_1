@@ -7,6 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <TextBox x:Name="FNameBox" HorizontalAlignment="Center" Height="26" Margin="0,224,0,0" TextWrapping="Wrap" Text="First Name" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="LNameBox" HorizontalAlignment="Center" Height="26" Margin="0,256,0,0" TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="BalanceBox" HorizontalAlignment="Center" Height="26" Margin="0,288,0,0" TextWrapping="Wrap" Text="Balance" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="AcctNoBox" HorizontalAlignment="Center" Height="28" Margin="0,320,0,0" TextWrapping="Wrap" Text="Account No" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="PinBox" HorizontalAlignment="Center" Height="28" Margin="0,352,0,0" TextWrapping="Wrap" Text="PIN No" VerticalAlignment="Top" Width="200" TextChanged="PinBox_TextChanged"/>
+
+        <TextBox x:Name="TotalNum" HorizontalAlignment="Left" Height="24" Margin="200,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
+        <TextBlock HorizontalAlignment="Left" Height="35" Margin="50,38,0,0" TextWrapping="Wrap" Text="Total Number of Users" VerticalAlignment="Top" Width="124" RenderTransformOrigin="0.645,-0.155"/>
+        <Button x:Name="GoButton" Content="Go" HorizontalAlignment="Center" Margin="0,149,0,0" VerticalAlignment="Top" Height="24" Width="60" Click="GoButton_Click"/>
+        <TextBox x:Name="IndexNum" HorizontalAlignment="Center" Height="24" Margin="0,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="35" Margin="200,104,0,0" TextWrapping="Wrap" Text="Enter Index of user" VerticalAlignment="Top" Width="124" RenderTransformOrigin="0.645,-0.155"/>
+
     </Grid>
 </Window>
