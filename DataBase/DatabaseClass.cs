@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace DataBase
 {
@@ -15,7 +17,7 @@ namespace DataBase
             dataStruct = new List<DataStruct>();
 
             DBGenerator user1 = new DBGenerator();
-            user1.firstName = "Gman1";
+            user1.firstName = "Man1";
             user1.lastName = "BlaBla1";
             user1.acctNo = 561651;
             user1.balance = 100000;
@@ -23,14 +25,14 @@ namespace DataBase
 
 
             DBGenerator user2 = new DBGenerator();
-            user2.firstName = "Gman2";
+            user2.firstName = "Man2";
             user2.lastName = "BlaBla2";
             user2.acctNo = 561652;
             user2.balance = 200000;
             user2.pin = 2222;
 
             DBGenerator user3 = new DBGenerator();
-            user3.firstName = "Gman3";
+            user3.firstName = "Man3";
             user3.lastName = "BlaBla3";
             user3.acctNo = 561653;
             user3.balance = 300000;
@@ -40,16 +42,18 @@ namespace DataBase
             dataStruct.Add(user2);
             dataStruct.Add(user3);
 
+
         }
 
         public uint GetAcctNoByIndex(int index)
         {
-            return dataStruct[index -1].acctNo;
+
+            return dataStruct[index - 1].acctNo;
         }
 
         public uint GetPINByIndex(int index)
         {
-            return dataStruct[index -1].pin;
+            return dataStruct[index - 1].pin;
         }
         public string GetFirstNameByIndex(int index)
         {
@@ -68,6 +72,22 @@ namespace DataBase
             return dataStruct.Count;
         }
 
+        public Bitmap GetImage()
+        {
+
+            /*string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\resources\viking.png";
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.UriSource = new Uri(path);
+            image.EndInit();
+                //new Bitmap(path, true);
+            return image;*/
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\resources\viking.png";
+            Bitmap image = new Bitmap(path, true);
+            return image;
+        }
     }
+
 }
+
 

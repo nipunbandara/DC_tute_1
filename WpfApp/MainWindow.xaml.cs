@@ -1,6 +1,7 @@
 ﻿using RemoteServer;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -33,10 +34,20 @@ namespace WpfApp
             NetTcpBinding tcp = new NetTcpBinding();
             //Set the URL and create the connection!
             string URL = "net.tcp://localhost:8100/DataService";
-            foobFactory = new ChannelFactory<DataServerInterface>(tcp, URL);
-            foob = foobFactory.CreateChannel();
-            //Also, tell me how many entries are in the DB.
-            TotalNum.Text = foob.GetNumEntries().ToString();
+            try
+            {
+                foobFactory = new ChannelFactory<DataServerInterface>(tcp, URL);
+                foob = foobFactory.CreateChannel();
+                //Also, tell me how many entries are in the DB.
+                TotalNum.Text = foob.GetNumEntries().ToString();
+            }
+            catch (Exception e)
+            {
+                MyException m = new MyException();
+                m.Reason = "Some Problemo";
+                throw new FaultException<MyException>(m);
+
+            }
         }
 
         private void GoButton_Click(object sender, RoutedEventArgs e)
@@ -46,20 +57,82 @@ namespace WpfApp
             int bal = 0;
             uint acct = 0, pin = 0;
             //On click, Get the index....
-            index = int.Parse(IndexNum.Text);
+            try
+            {
+                index = int.Parse(IndexNum.Text);
+
+            }
+            catch
+            {
+                MyException m = new MyException();
+                m.Reason = "Some Problemo";
+                throw new FaultException<MyException>(m);
+            }
             //Then, run our RPC function, using the out mode parameters...
-            foob.GetValuesForEntry(index, out acct, out pin, out bal, out fName, out lName);
+            try
+            {
+                if (index > foob.GetNumEntries() || index <= 0)
+                {
+                    Console.WriteLine("Index out of bound");
+
+                }
+                else
+                {
+                    foob.GetValuesForEntry(index, out acct, out pin, out bal, out fName, out lName);
+                }
+                FNameBox.Text = fName;
+                LNameBox.Text = lName;
+                BalanceBox.Text = bal.ToString("C");
+                AcctNoBox.Text = acct.ToString();
+                PinBox.Text = pin.ToString("D4");
+
+            }
+            catch
+            {
+                MyException m = new MyException();
+                m.Reason = "Some Problemo";
+                throw new FaultException<MyException>(m);
+            }
+            //foob.GetValuesForEntry(index, out acct, out pin, out bal, out fName, out lName);
             //And now, set the values in the GUI!
-            FNameBox.Text = fName;
-            LNameBox.Text = lName;
-            BalanceBox.Text = bal.ToString("C");
-            AcctNoBox.Text = acct.ToString();
-            PinBox.Text = pin.ToString("D4");
+            //FNameBox.Text = fName;
+            //LNameBox.Text = lName;
+            //BalanceBox.Text = bal.ToString("C");
+            //AcctNoBox.Text = acct.ToString();
+            //PinBox.Text = pin.ToString("D4");
+
+
+            //Bitmap image = foob.GetImage();
+
+            //string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\resources\viking.png";
+            //BitmapImage vimage = new BitmapImage();
+            //vimage.BeginInit();
+            //vimage.UriSource = new Uri(path);
+            //vimage.EndInit();
+            //Console.WriteLine("imagdsf" + image.GetType());
+
+            //BitmapImage vimage = BitmapToBitmapImage(image);
+            //ImageV.Source = vimage;
+            //ImageV.Source = image;
+
         }
 
-        private void PinBox_TextChanged(object sender, TextChangedEventArgs e)
+        private BitmapImage BitmapToBitmapImage(Bitmap bitmap)
         {
-
+            BitmapImage bitmapImage = new BitmapImage();
+            using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+            {
+                bitmap.Save(ms, bitmap.RawFormat);
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = ms;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+                bitmapImage.Freeze();
+            }
+            return bitmapImage;
         }
+
+
+
     }
 }
