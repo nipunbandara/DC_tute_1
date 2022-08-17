@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +18,30 @@ namespace DataBase
         {
             dataStruct = new List<DataStruct>();
 
-            DBGenerator user1 = new DBGenerator();
+            string[] firstNames = { "Maneesa", "Chathusska", "Rondimal", "Nuduja", "Kalpani", "Sadeevya", "Seniya", "Siwmini", "Chamath", "Sirimal" };
+            string[] lastNames = { "Kanapita", "Rodriguu", "Fernando", "MapaArachchi", "Amaratunga", "Punch", "Bandara", "Siripala", "Godarala", "Sirisena" };
+            //Using Random with a seed value
+            Random random = new Random(1);
+
+
+            for (int i = 0; i < 100; i++)
+            {
+                DataStruct account = new DataStruct();
+                account.firstName = firstNames[random.Next(0, 10)];
+                account.lastName = lastNames[random.Next(0, 10)];
+                account.balance = random.Next(0, 1000000);
+                account.pin = (uint)random.Next(111, 999);
+                account.acctNo = (uint)random.Next(10, 100);
+                dataStruct.Add(account);
+
+
+            }
+
+
+
+
+
+            /*DBGenerator user1 = new DBGenerator();
             user1.firstName = "Man1";
             user1.lastName = "BlaBla1";
             user1.acctNo = 561651;
@@ -40,7 +65,7 @@ namespace DataBase
 
             dataStruct.Add(user1);
             dataStruct.Add(user2);
-            dataStruct.Add(user3);
+            dataStruct.Add(user3);*/
 
 
         }
@@ -72,7 +97,7 @@ namespace DataBase
             return dataStruct.Count;
         }
 
-        public Bitmap GetImage()
+        public byte[] GetImage()
         {
 
             /*string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\resources\viking.png";
@@ -84,8 +109,48 @@ namespace DataBase
             return image;*/
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\resources\viking.png";
             Bitmap image = new Bitmap(path, true);
-            return image;
+
+
+            /*
+            string base64String = string.Empty;
+
+            base64String = ToBase64String(image, ImageFormat.Png);
+
+
+            string ToBase64String(Bitmap bmp, ImageFormat imageFormat)
+            {
+                string base64Strings = string.Empty;
+
+
+                MemoryStream memoryStream = new MemoryStream();
+                bmp.Save(memoryStream, imageFormat);
+
+
+                memoryStream.Position = 0;
+                byte[] byteBuffer = memoryStream.ToArray();
+
+
+                memoryStream.Close();
+
+
+                base64Strings = Convert.ToBase64String(byteBuffer);
+                byteBuffer = null;
+
+
+                return base64String;
+            }
+
+            return base64String;
+*/
+            ImageConverter converter = new ImageConverter();
+            byte[] byt = (byte[])converter.ConvertTo(image, typeof(byte[]));
+
+            Console.WriteLine(byt.Length);
+            return byt;
+
         }
+
+        
     }
 
 }

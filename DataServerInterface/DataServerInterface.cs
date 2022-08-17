@@ -19,7 +19,7 @@ namespace RemoteServer
         [FaultContract(typeof(InvalidOperationException))]
         void GetValuesForEntry(int index, out uint acctNo, out uint pin, out int bal, out string fName, out string lName);
         [OperationContract]
-        Bitmap GetImage();
+        byte[] GetImage();
     }
 
     [DataContract]

@@ -47,11 +47,12 @@ namespace RemoteServer
                 MyException m = new MyException();
                 m.Reason = "Some Problemo";
                 throw new FaultException<MyException>(m);
+               
             }
 
         }
 
-        public Bitmap GetImage()
+        public byte[] GetImage()
         {
             DatabaseClass users = new DatabaseClass();
             return users.GetImage();

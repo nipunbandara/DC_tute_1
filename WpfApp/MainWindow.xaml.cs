@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -44,7 +45,8 @@ namespace WpfApp
             catch (Exception e)
             {
                 MyException m = new MyException();
-                m.Reason = "Some Problemo";
+                MessageBox.Show("Database connection problem!");
+                m.Reason = "Database connection problem!";
                 throw new FaultException<MyException>(m);
 
             }
@@ -62,11 +64,16 @@ namespace WpfApp
                 index = int.Parse(IndexNum.Text);
 
             }
-            catch
+            catch(Exception ex)
             {
-                MyException m = new MyException();
+                /*MyException m = new MyException();
                 m.Reason = "Some Problemo";
-                throw new FaultException<MyException>(m);
+                FaultException fe = new FaultException<MyException>(m);
+                fe.CreateMessageFault()*/
+                MessageBox.Show("Enter Valid number !");
+
+                //throw new FaultException<MyException>(m);
+                return;
             }
             //Then, run our RPC function, using the out mode parameters...
             try
@@ -74,6 +81,8 @@ namespace WpfApp
                 if (index > foob.GetNumEntries() || index <= 0)
                 {
                     Console.WriteLine("Index out of bound");
+                    MessageBox.Show("Enter index within range");
+
 
                 }
                 else
@@ -102,7 +111,15 @@ namespace WpfApp
             //PinBox.Text = pin.ToString("D4");
 
 
-            //Bitmap image = foob.GetImage();
+
+           /* BasicHttpBinding binding = new BasicHttpBinding();
+
+            binding.MaxReceivedMessageSize = 1000000;*/
+
+            //byte[] bytimage = foob.GetImage();
+
+            //Bitmap bitmpimage = Base64StringToBitmap(image);
+
 
             //string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\resources\viking.png";
             //BitmapImage vimage = new BitmapImage();
@@ -110,12 +127,43 @@ namespace WpfApp
             //vimage.UriSource = new Uri(path);
             //vimage.EndInit();
             //Console.WriteLine("imagdsf" + image.GetType());
+           /* string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\resources\viking.png";
+            Bitmap image = new Bitmap(path, true);*/
 
-            //BitmapImage vimage = BitmapToBitmapImage(image);
-            //ImageV.Source = vimage;
+           /* ImageConverter converter = new ImageConverter();
+            Bitmap image = (Bitmap)converter.ConvertFrom(bytimage);
+
+            BitmapImage vimage = BitmapToBitmapImage(image);
+            ImageV.Source = vimage;*/
             //ImageV.Source = image;
 
+
+          
         }
+
+        /*Bitmap Base64StringToBitmap(string base64String)
+        {
+            Bitmap bmpReturn = null;
+
+
+            byte[] byteBuffer = Convert.FromBase64String(base64String);
+            MemoryStream memoryStream = new MemoryStream(byteBuffer);
+
+
+            memoryStream.Position = 0;
+
+
+            bmpReturn = (Bitmap)Bitmap.FromStream(memoryStream);
+
+
+            memoryStream.Close();
+            memoryStream = null;
+            byteBuffer = null;
+
+
+            return bmpReturn;
+        }
+*/
 
         private BitmapImage BitmapToBitmapImage(Bitmap bitmap)
         {
