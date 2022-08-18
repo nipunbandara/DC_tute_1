@@ -12,12 +12,13 @@
         <TextBox x:Name="BalanceBox" HorizontalAlignment="Center" Height="26" Margin="0,288,0,0" TextWrapping="Wrap" Text="Balance" VerticalAlignment="Top" Width="200"/>
         <TextBox x:Name="AcctNoBox" HorizontalAlignment="Center" Height="28" Margin="0,320,0,0" TextWrapping="Wrap" Text="Account No" VerticalAlignment="Top" Width="200"/>
         <TextBox x:Name="PinBox" HorizontalAlignment="Center" Height="28" Margin="0,352,0,0" TextWrapping="Wrap" Text="PIN No" VerticalAlignment="Top" Width="200" />
+        <Border BorderBrush="#FF41657F" BorderThickness="1" HorizontalAlignment="Center" Height="2" Margin="0,195,0,0" VerticalAlignment="Top" Width="800" Background="#FF41657F"/>
 
-        <TextBox x:Name="TotalNum" HorizontalAlignment="Left" Height="24" Margin="200,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
-        <TextBlock HorizontalAlignment="Left" Height="35" Margin="50,38,0,0" TextWrapping="Wrap" Text="Total Number of Users" VerticalAlignment="Top" Width="124" RenderTransformOrigin="0.645,-0.155"/>
+        <TextBox x:Name="TotalNum" HorizontalAlignment="Center" Height="24" Margin="0,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
+        <TextBlock HorizontalAlignment="Left" Height="35" Margin="200,38,0,0" TextWrapping="Wrap" Text="Total Number of Users" VerticalAlignment="Top" Width="124" RenderTransformOrigin="0.645,-0.155"/>
         <Button x:Name="GoButton" Content="Go" HorizontalAlignment="Center" Margin="0,149,0,0" VerticalAlignment="Top" Height="24" Width="60" Click="GoButton_Click"/>
         <TextBox x:Name="IndexNum" HorizontalAlignment="Center" Height="24" Margin="0,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
-        <Image Name="ImageV" Margin="598,52,38,208" />
+        <Image Name="ImageSec" Margin="582,214,54,46" />
         <TextBlock HorizontalAlignment="Left" Height="35" Margin="200,104,0,0" TextWrapping="Wrap" Text="Enter Index of user" VerticalAlignment="Top" Width="124" RenderTransformOrigin="0.645,-0.155"/>
 
     </Grid>

@@ -26,11 +26,12 @@ namespace RemoteServer
             catch (Exception e)
             {
                 MyException m = new MyException();
-                m.Reason = "Some Problemo";
+                m.Reason = "Problem occured when calling database class getNumRecords method";
                 throw new FaultException<MyException>(m);
             }
         }
-        public void GetValuesForEntry(int index, out uint acctNo, out uint pin, out int bal, out string fName, out string lName)
+        
+        public void GetValuesForEntry(int index, out uint acctNo, out uint pin, out int bal, out string fName, out string lName, out Bitmap profilePic)
         {
             try
             {
@@ -40,23 +41,20 @@ namespace RemoteServer
                 bal = users.GetBalanceByIndex(index);
                 fName = users.GetFirstNameByIndex(index);
                 lName = users.GetLastNameByIndex(index);
+                profilePic = users.GetProfilePic(index);
             }
 
             catch (Exception e)
             {
                 MyException m = new MyException();
-                m.Reason = "Some Problemo";
+                m.Reason = "Problem occured when assigning data to variables";
                 throw new FaultException<MyException>(m);
                
             }
 
         }
 
-        public byte[] GetImage()
-        {
-            DatabaseClass users = new DatabaseClass();
-            return users.GetImage();
-        }
+        
 
     }
 }
