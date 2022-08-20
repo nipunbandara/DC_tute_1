@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1AB2077C-B4FD-41D9-9629-34C6F2A775E5}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>RemoteServer</RootNamespace>
-    <AssemblyName>RemoteServer</AssemblyName>
+    <ProjectGuid>{276BDC39-6440-4454-B3B4-D2E6638EF2F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataServerInterface</RootNamespace>
+    <AssemblyName>DataServerInterface</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -46,22 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataServer.cs" />
-    <Compile Include="Server.cs" />
+    <Compile Include="DataServerInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataBase\DataBase.csproj">
-      <Project>{16c5e82a-6ab8-4bfb-ade0-4f9a54f3baa8}</Project>
-      <Name>DataBase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataServerInterface\DataServerInterface.csproj">
-      <Project>{276bdc39-6440-4454-b3b4-d2e6638ef2f8}</Project>
-      <Name>DataServerInterface</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

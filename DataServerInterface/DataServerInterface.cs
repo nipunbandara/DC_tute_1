@@ -17,11 +17,10 @@ namespace RemoteServer
         int GetNumEntries();
         [OperationContract]
         [FaultContract(typeof(InvalidOperationException))]
-        void GetValuesForEntry(int index, out uint acctNo, out uint pin, out int bal, out string fName, out string lName);
-        [OperationContract]
-        Bitmap GetImage();
-    }
+        void GetValuesForEntry(int index, out uint acctNo, out uint pin, out int bal, out string fName, out string lName, out Bitmap profilePic);
+        }
 
+    //custom exception handling declaration
     [DataContract]
     public class MyException
     {

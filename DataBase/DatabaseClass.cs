@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,39 +12,46 @@ namespace DataBase
 {
     public class DatabaseClass
     {
+        //declaring list data structure for to store data
         List<DataStruct> dataStruct;
+        
 
         public DatabaseClass()
         {
             dataStruct = new List<DataStruct>();
+            
+            string[] firstNames = { "Maneesa", "Chathusska", "Rondimal", "Nuduja", "Kalpani", "Sadeevya", "Seniya", "Siwmini", "Chamath", "Shas" };
+            string[] lastNames = { "Kanapita", "Rodriguu", "Fernando", "MapaArachchi", "Amaratunga", "Punch", "Bandara", "Karavota", "Palihepitiya", "Gunasinghe" };
+            //Using Random to get random numbers
+            Random random = new Random(1);
+            int imageId = 0;
+            string path = "";
 
-            DBGenerator user1 = new DBGenerator();
-            user1.firstName = "Man1";
-            user1.lastName = "BlaBla1";
-            user1.acctNo = 561651;
-            user1.balance = 100000;
-            user1.pin = 1111;
-
-
-            DBGenerator user2 = new DBGenerator();
-            user2.firstName = "Man2";
-            user2.lastName = "BlaBla2";
-            user2.acctNo = 561652;
-            user2.balance = 200000;
-            user2.pin = 2222;
-
-            DBGenerator user3 = new DBGenerator();
-            user3.firstName = "Man3";
-            user3.lastName = "BlaBla3";
-            user3.acctNo = 561653;
-            user3.balance = 300000;
-            user3.pin = 3333;
-
-            dataStruct.Add(user1);
-            dataStruct.Add(user2);
-            dataStruct.Add(user3);
+            //loop to generate 100 users with random data
+            for (int i = 0; i < 100; i++)
+            {
+                DataStruct account = new DataStruct();
+                account.firstName = firstNames[random.Next(0, 10)];
+                account.lastName = lastNames[random.Next(0, 10)];
+                account.balance = random.Next(0, 1000000);
+                account.pin = (uint)random.Next(1000, 9999);
+                account.acctNo = (uint)random.Next(1000, 9000);
+                imageId = random.Next(1, 5);
+                path = @"C:\resources\" + imageId + ".png";
+                account.profilePic = bitmapConvertion(path);
+                dataStruct.Add(account);
 
 
+            }
+
+
+        }
+
+        private Bitmap bitmapConvertion(string path)
+        {
+            
+            Bitmap image = new Bitmap(path, true);
+            return image;
         }
 
         public uint GetAcctNoByIndex(int index)
@@ -71,21 +80,13 @@ namespace DataBase
         {
             return dataStruct.Count;
         }
-
-        public Bitmap GetImage()
+        public Bitmap GetProfilePic(int index)
         {
-
-            /*string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\resources\viking.png";
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.UriSource = new Uri(path);
-            image.EndInit();
-                //new Bitmap(path, true);
-            return image;*/
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\resources\viking.png";
-            Bitmap image = new Bitmap(path, true);
-            return image;
+            return dataStruct[index - 1].profilePic;
         }
+
+
+
     }
 
 }
