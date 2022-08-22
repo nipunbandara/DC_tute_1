@@ -1,4 +1,5 @@
-﻿using RemoteServer;
+﻿using BusinessTier;
+using RemoteServer;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -26,24 +27,24 @@ namespace WpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DataServerInterface foob;
+        private BusinessServerInterface foob;
 
         public MainWindow()
         {
             InitializeComponent();
 
             //This is a factory that generates remote connections to our remote class. This is what hides the RPC stuff!
-            ChannelFactory<DataServerInterface> foobFactory;
+            ChannelFactory<BusinessServerInterface> foobFactory;
             NetTcpBinding tcp = new NetTcpBinding();
             //Increasing passable object size
             tcp.MaxReceivedMessageSize = 2147483647;
             tcp.MaxBufferSize = 2147483647;
             tcp.MaxBufferPoolSize = 2147483647;
             //Set the URL and create the connection!
-            string URL = "net.tcp://localhost:8100/DataService";
+            string URL = "net.tcp://localhost:8200/BusinessService";
             try
             {
-                foobFactory = new ChannelFactory<DataServerInterface>(tcp, URL);
+                foobFactory = new ChannelFactory<BusinessServerInterface>(tcp, URL);
                 foob = foobFactory.CreateChannel();
                 //Also, tell me how many entries are in the DB.
                 TotalNum.Text = foob.GetNumEntries().ToString();
