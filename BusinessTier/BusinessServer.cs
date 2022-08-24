@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BusinessTier
@@ -34,6 +35,40 @@ namespace BusinessTier
         public void GetValuesForEntry(int index, out uint acctNo, out uint pin, out int bal, out string fName, out string lName, out Bitmap profilePic)
         {
                 foob.GetValuesForEntry(index, out acctNo, out pin, out bal, out fName, out lName, out profilePic);
+        }
+
+        public void GetValuesForSearch(string searchText, out uint acctNo, out uint pin, out int bal, out string fName, out string lName, out Bitmap profilePic)
+        {
+            
+            acctNo = 0;
+            pin = 0;
+            bal = 0;
+            fName = null;
+            lName = null;
+            profilePic = null;
+            int numEntry = foob.GetNumEntries();
+            for (int i = 1; i <= numEntry; i++)
+            {
+                uint aNo;
+                uint pn;
+                int bl;
+                string fn;
+                string ln;
+                Bitmap prp;
+
+                foob.GetValuesForEntry(i, out aNo, out pn, out bl, out fn, out ln, out prp);
+                if (fn.ToLower().Contains(searchText.ToLower()))
+                {
+                    acctNo = aNo;
+                    pin = pn;
+                    bal = bl;
+                    fName = fn;
+                    lName = ln;
+                    profilePic = prp;
+                    break;
+                }
+            }
+            Thread.Sleep(5000); //Forced sleep for two seconds
         }
     }
 }
