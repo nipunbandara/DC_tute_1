@@ -1,42 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataBase
 {
-    internal class DBGenerator : DataStruct
+    public class DBGenerator : DataStruct
     {
 
-        private string GetFirstname()
+        public string GetFirstname
         {
-            return firstName;
+            get { return firstName; }
+            set { firstName = value; }
         }
-        private string GetLastname()
+        public string GetLastname
         {
-            return lastName;
+            get { return lastName; }
+            set { lastName = value; }
         }
-        private uint GetPIN()
+        public uint GetPIN
         {
-            return pin;
+            get { return pin; }
+            set { pin = value; }
         }
-        private uint GetAcctNo()
+        public uint GetAcctNo
         {
-            return acctNo;
+            get { return acctNo; }
+            set { acctNo = value; }
         }
-        private int GetBalance()
+        public int GetBalance
         {
-            return balance;
+            get { return balance; }
+            set { balance = value; }
         }
-
+        public Bitmap GetProfilePic
+        {
+            get { return profilePic; }
+            set { profilePic = value; }
+        }
         public void GetNextAccount(out uint pin, out uint acctNo, out string firstName, out string lastName, out int balance)
         {
-            pin = GetPIN();
-            acctNo = GetAcctNo();
-            firstName = GetFirstname();
-            lastName = GetLastname();
-            balance = GetBalance();
+            pin = GetPIN;
+            acctNo = GetAcctNo;
+            firstName = GetFirstname;
+            lastName = GetLastname;
+            balance = GetBalance;
 
         }
 

@@ -100,7 +100,7 @@ namespace WpfApp
                 BalanceBox.Text = bal.ToString("C");
                 AcctNoBox.Text = acct.ToString();
                 PinBox.Text = pin.ToString("D4");
-                ImageSec.Source = BitmapToBitmapImage(profilePic);
+                ImageSec.Source = BitmapToImageSource(profilePic);
 
             }
             catch
@@ -114,20 +114,27 @@ namespace WpfApp
           
         }
 
-        //Bitmap to bitmapImage conversion method
-        private BitmapImage BitmapToBitmapImage(Bitmap bitmap)
+        private void SearchButthon_Click(object sender, RoutedEventArgs e)
         {
-             BitmapImage bitmapImage = new BitmapImage();
-             using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
-             {
-                 bitmap.Save(ms, bitmap.RawFormat);
-                 bitmapImage.BeginInit();
-                 bitmapImage.StreamSource = ms;
-                 bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                 bitmapImage.EndInit();
-                 bitmapImage.Freeze();
-             }
-             return bitmapImage;
+            string fName = "", lName = "";
+            int bal = 0;
+            uint acct = 0, pin = 0;
+            Bitmap profilePic = null;
+            foob.GetValuesForSearch(SearchBox.Text, out acct, out pin, out bal, out  fName, out lName, out profilePic);
+            FNameBox.Text = fName;
+            LNameBox.Text = lName;
+            BalanceBox.Text = bal.ToString("C");
+            AcctNoBox.Text = acct.ToString();
+            PinBox.Text = pin.ToString("D4");
+            ImageSec.Source = BitmapToImageSource(profilePic);
+        }
+
+        //Bitmap to bitmapImage conversion method
+        private ImageSource BitmapToImageSource(Bitmap bitmap)
+        {
+            var handle = bitmap.GetHbitmap();
+
+            return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
         }
     }
 }

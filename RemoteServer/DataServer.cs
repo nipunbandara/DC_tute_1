@@ -18,17 +18,17 @@ namespace RemoteServer
         }
         public int GetNumEntries()
         {
-            try
-            {
+            //try
+            //{
                 DatabaseClass users = new DatabaseClass();
                 return users.GetNumRecords();
-            }
-            catch (Exception e)
+           // }
+            /*catch (Exception e)
             {
                 MyException m = new MyException();
                 m.Reason = "Problem occured when calling database class getNumRecords method";
                 throw new FaultException<MyException>(m);
-            }
+            }*/
         }
         
         public void GetValuesForEntry(int index, out uint acctNo, out uint pin, out int bal, out string fName, out string lName, out Bitmap profilePic)

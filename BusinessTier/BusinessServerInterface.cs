@@ -18,6 +18,10 @@ namespace BusinessTier
         [OperationContract]
         [FaultContract(typeof(InvalidOperationException))]
         void GetValuesForEntry(int index, out uint acctNo, out uint pin, out int bal, out string fName, out string lName, out Bitmap profilePic);
+
+        [OperationContract]
+        void GetValuesForSearch(string searchText, out uint acctNo, out uint pin, out int bal, out string fName, out string lName, out Bitmap profilePic);
+
     }
 
     //custom exception handling declaration

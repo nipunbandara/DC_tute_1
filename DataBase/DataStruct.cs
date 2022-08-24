@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataBase
 {
-    internal class DataStruct
+    public class DataStruct
     {
         public uint acctNo;
         public uint pin;

@@ -28,14 +28,14 @@ namespace DataBase
             string path = "";
 
             //loop to generate 100 users with random data
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 10; i++)
             {
                 DataStruct account = new DataStruct();
                 account.firstName = firstNames[random.Next(0, 10)];
                 account.lastName = lastNames[random.Next(0, 10)];
-                account.balance = random.Next(0, 1000000);
+                account.balance = random.Next(0, 10000000);
                 account.pin = (uint)random.Next(1000, 9999);
-                account.acctNo = (uint)random.Next(1000, 9000);
+                account.acctNo = (uint)random.Next(1000, 900000);
                 imageId = random.Next(1, 5);
                 path = @"C:\resources\" + imageId + ".png";
                 account.profilePic = bitmapConvertion(path);
@@ -49,9 +49,17 @@ namespace DataBase
 
         private Bitmap bitmapConvertion(string path)
         {
-            
-            Bitmap image = new Bitmap(path, true);
-            return image;
+
+            Bitmap bitmap;
+            using (Stream bmpStream = System.IO.File.Open(path, System.IO.FileMode.Open))
+            {
+                Image image = Image.FromStream(bmpStream);
+
+                bitmap = new Bitmap(image);
+
+            }
+            return bitmap;
+
         }
 
         public uint GetAcctNoByIndex(int index)
