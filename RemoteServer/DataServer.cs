@@ -41,7 +41,7 @@ namespace RemoteServer
                 bal = users.GetBalanceByIndex(index);
                 fName = users.GetFirstNameByIndex(index);
                 lName = users.GetLastNameByIndex(index);
-                profilePic = users.GetProfilePic(index);
+                profilePic = users.GetProfilePicByIndex(index);
             }
 
             catch (Exception e)

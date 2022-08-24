@@ -40,13 +40,14 @@ namespace DataBase
             get { return profilePic; }
             set { profilePic = value; }
         }
-        public void GetNextAccount(out uint pin, out uint acctNo, out string firstName, out string lastName, out int balance)
+        public void GetNextAccount(out uint pin, out uint acctNo, out string firstName, out string lastName, out int balance, out Bitmap profilePic)
         {
             pin = GetPIN;
             acctNo = GetAcctNo;
             firstName = GetFirstname;
             lastName = GetLastname;
             balance = GetBalance;
+            profilePic = GetProfilePic;
 
         }
 

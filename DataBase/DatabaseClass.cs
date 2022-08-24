@@ -88,7 +88,7 @@ namespace DataBase
         {
             return dataStruct.Count;
         }
-        public Bitmap GetProfilePic(int index)
+        public Bitmap GetProfilePicByIndex(int index)
         {
             return dataStruct[index - 1].profilePic;
         }
