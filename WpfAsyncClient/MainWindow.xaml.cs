@@ -132,12 +132,41 @@ namespace WpfAsyncClient
                         callback = this.OnSearchCompletion;
                         IAsyncResult result = search.BeginInvoke(SearchBox.Text, callback, null);*/
             searchvalue = SearchBox.Text;
+            int testSB = 0;
+            try 
+            {
+                testSB = int.Parse(SearchBox.Text);
+            }
+            catch
+            {
+                
+            }
+            
+
+            if (testSB != 0)
+            {
+                MessageBox.Show("Enter String Values");
+                return;
+            }
+
+            
+            int timeout = 10000;
+
             Task<DBGenerator> task = new Task<DBGenerator>(SearchDB);
             task.Start();
             statusLabel.Content = "Searching starts.....";
-            DBGenerator dbgener = await task;
-            UpdateGui(dbgener);
-            statusLabel.Content = "Searching ends....";
+            if (await Task.WhenAny(task, Task.Delay(timeout)) == task)
+            {
+                // task completed within timeout
+                DBGenerator dbgener = await task;
+                UpdateGui(dbgener);
+                statusLabel.Content = "Searching ends....";
+            }
+            else
+            {
+                statusLabel.Content = "Timed out ....";
+            }
+            
         }
 
         private DBGenerator SearchDB()
@@ -146,8 +175,16 @@ namespace WpfAsyncClient
             int bal = 0;
             uint acct = 0, pin = 0;
             Bitmap profilePic = null;
-
-            foob.GetValuesForSearch(searchvalue, out acct, out pin, out bal, out fName, out lName, out profilePic);
+            try 
+            { 
+                foob.GetValuesForSearch(searchvalue, out acct, out pin, out bal, out fName, out lName, out profilePic); 
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Name is not available in database !");
+                
+            }
+            
 
             if (acct != 0)
             {
@@ -165,12 +202,21 @@ namespace WpfAsyncClient
 
         private void UpdateGui(DBGenerator aUser)
         {
-            FNameBox.Text = aUser.firstName;
-            LNameBox.Text = aUser.lastName;
-            BalanceBox.Text = aUser.balance.ToString("C");
-            AcctNoBox.Text = aUser.acctNo.ToString();
-            PinBox.Text = aUser.pin.ToString("D4");
-            ImageSec.Source = BitmapToImageSource(aUser.profilePic);
+            if (aUser == null)
+            {
+                MessageBox.Show("Name is not available in database !");
+
+            }
+            else
+            {
+                FNameBox.Text = aUser.firstName;
+                LNameBox.Text = aUser.lastName;
+                BalanceBox.Text = aUser.balance.ToString("C");
+                AcctNoBox.Text = aUser.acctNo.ToString();
+                PinBox.Text = aUser.pin.ToString("D4");
+                ImageSec.Source = BitmapToImageSource(aUser.profilePic);
+            }
+            
         }
 
         /*private void OnSearchCompletion(IAsyncResult asyncResult)
