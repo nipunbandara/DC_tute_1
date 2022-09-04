@@ -31,14 +31,14 @@ namespace BusinessTier
             foob = foobFactory.CreateChannel();
 
             LogNumber++;
-            logstr = "Log Number : " + LogNumber + " Date/Time : " + System.DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss") + " Log Detail : ";
+            logstr = "Date/Time : " + System.DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss") + " Log Number : " + LogNumber  + " Log Detail : ";
             Log(logstr + "Server Initialized\n");
         }
 
         public int GetNumEntries()
         {
             LogNumber++;
-            logstr = "Log Number : " + LogNumber + " Date/Time : " + System.DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss") + " Log Detail : ";
+            logstr = "Date/Time : " + System.DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss") + " Log Number : " + LogNumber + " Log Detail : ";
             Log(logstr + "GetNumEntries Function Executed\n");
             return foob.GetNumEntries();
         }
@@ -46,7 +46,7 @@ namespace BusinessTier
         public void GetValuesForEntry(int index, out uint acctNo, out uint pin, out int bal, out string fName, out string lName, out Bitmap profilePic)
         {
             LogNumber++;
-            logstr = "Log Number : " + LogNumber + " Date/Time : " + System.DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss") + " Log Detail : ";
+            logstr = "Date/Time : " + System.DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss") + " Log Number : " + LogNumber + " Log Detail : ";
             Log(logstr + "GetValuesForEntry function Executed\n");
             foob.GetValuesForEntry(index, out acctNo, out pin, out bal, out fName, out lName, out profilePic);
         }
@@ -54,7 +54,7 @@ namespace BusinessTier
         public void GetValuesForSearch(string searchText, out uint acctNo, out uint pin, out int bal, out string fName, out string lName, out Bitmap profilePic)
         {
             LogNumber++;
-            logstr = "Log Number : " + LogNumber + " Date/Time : " + System.DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss") + " Log Detail : ";
+            logstr = "Date/Time : " + System.DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss") + " Log Number : " + LogNumber + " Log Detail : ";
             Log(logstr + "GetValuesForSearch function Executed\n");
 
             acctNo = 0;

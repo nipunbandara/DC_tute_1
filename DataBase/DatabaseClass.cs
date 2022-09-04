@@ -14,12 +14,12 @@ namespace DataBase
     {
         //declaring list data structure for to store data
         List<DataStruct> dataStruct;
-        
+
 
         public DatabaseClass()
         {
             dataStruct = new List<DataStruct>();
-            
+
             string[] firstNames = { "Maneesa", "Chathusska", "Rondimal", "Nuduja", "Kalpani", "Sadeevya", "Seniya", "Siwmini", "Chamath", "Shas" };
             string[] lastNames = { "Kanapita", "Rodriguu", "Fernando", "MapaArachchi", "Amaratunga", "Punch", "Bandara", "Karavota", "Palihepitiya", "Gunasinghe" };
             //Using Random to get random numbers
@@ -28,7 +28,7 @@ namespace DataBase
             string path = "";
 
             //loop to generate 100 users with random data
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 100000; i++)
             {
                 DataStruct account = new DataStruct();
                 account.firstName = firstNames[random.Next(0, 10)];
@@ -38,7 +38,7 @@ namespace DataBase
                 account.acctNo = (uint)random.Next(1000, 900000);
                 imageId = random.Next(1, 5);
                 path = @"C:\resources\" + imageId + ".png";
-                account.profilePic = bitmapConvertion(path);
+                //account.profilePic = bitmapConvertion(path);
                 dataStruct.Add(account);
 
 

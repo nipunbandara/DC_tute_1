@@ -18,13 +18,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DataBase;
 using System.Runtime.Remoting.Messaging;
+using System.IO;
 
 namespace WpfAsyncClient
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    
+
     public delegate DataStruct Search(string value); //delegate for searching
 
     public partial class MainWindow : Window
@@ -103,7 +104,8 @@ namespace WpfAsyncClient
                 BalanceBox.Text = bal.ToString("C");
                 AcctNoBox.Text = acct.ToString();
                 PinBox.Text = pin.ToString("D4");
-                ImageSec.Source = BitmapToImageSource(profilePic);
+
+                //ImageSec.Source = BitmapToImageSource(profilePic);
 
             }
             catch
@@ -133,15 +135,15 @@ namespace WpfAsyncClient
                         IAsyncResult result = search.BeginInvoke(SearchBox.Text, callback, null);*/
             searchvalue = SearchBox.Text;
             int testSB = 0;
-            try 
+            try
             {
                 testSB = int.Parse(SearchBox.Text);
             }
             catch
             {
-                
+
             }
-            
+
 
             if (testSB != 0)
             {
@@ -149,7 +151,7 @@ namespace WpfAsyncClient
                 return;
             }
 
-            
+
             int timeout = 10000;
 
             Task<DBGenerator> task = new Task<DBGenerator>(SearchDB);
@@ -166,7 +168,7 @@ namespace WpfAsyncClient
             {
                 statusLabel.Content = "Timed out ....";
             }
-            
+
         }
 
         private DBGenerator SearchDB()
@@ -175,16 +177,16 @@ namespace WpfAsyncClient
             int bal = 0;
             uint acct = 0, pin = 0;
             Bitmap profilePic = null;
-            try 
-            { 
-                foob.GetValuesForSearch(searchvalue, out acct, out pin, out bal, out fName, out lName, out profilePic); 
+            try
+            {
+                foob.GetValuesForSearch(searchvalue, out acct, out pin, out bal, out fName, out lName, out profilePic);
             }
             catch (Exception e)
             {
                 MessageBox.Show("Name is not available in database !");
-                
+
             }
-            
+
 
             if (acct != 0)
             {
@@ -194,7 +196,7 @@ namespace WpfAsyncClient
                 aUser.balance = bal;
                 aUser.firstName = fName;
                 aUser.lastName = lName;
-                aUser.profilePic = profilePic;
+                //aUser.profilePic = profilePic;
                 return aUser;
             }
             return null;
@@ -214,9 +216,9 @@ namespace WpfAsyncClient
                 BalanceBox.Text = aUser.balance.ToString("C");
                 AcctNoBox.Text = aUser.acctNo.ToString();
                 PinBox.Text = aUser.pin.ToString("D4");
-                ImageSec.Source = BitmapToImageSource(aUser.profilePic);
+                //ImageSec.Source = BitmapToImageSource(aUser.profilePic);
             }
-            
+
         }
 
         /*private void OnSearchCompletion(IAsyncResult asyncResult)
