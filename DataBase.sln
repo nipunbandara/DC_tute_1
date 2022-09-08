@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biz-GUI Classes", "Biz-GUI 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REST-GUI", "REST-GUI\REST-GUI.csproj", "{67D7B123-71C5-4C4C-B23D-E30D240E9EE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseWebApp", "DataBaseWebApp\DataBaseWebApp.csproj", "{6B2F454E-2639-4D59-BADD-2E45769C51A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{67D7B123-71C5-4C4C-B23D-E30D240E9EE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67D7B123-71C5-4C4C-B23D-E30D240E9EE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67D7B123-71C5-4C4C-B23D-E30D240E9EE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B2F454E-2639-4D59-BADD-2E45769C51A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B2F454E-2639-4D59-BADD-2E45769C51A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B2F454E-2639-4D59-BADD-2E45769C51A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B2F454E-2639-4D59-BADD-2E45769C51A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
