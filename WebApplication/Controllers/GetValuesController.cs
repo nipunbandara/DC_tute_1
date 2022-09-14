@@ -21,6 +21,11 @@ namespace WebApplication.Controllers
         {
             DataIntermed dataI = new DataIntermed();
             DataList list = new DataList();
+
+            if(id <= 0 || id > list.GetNumRecords())
+            {
+                return NotFound();
+            }
             
             dataI.accNo = list.GetAcctNoByIndex(id);
             dataI.balance = list.GetBalanceByIndex(id);

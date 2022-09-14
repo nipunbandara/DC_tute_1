@@ -25,6 +25,7 @@ namespace REST_GUI
     {
 
         RestClient client;
+        static int numInd = 0;
 
         public MainWindow()
         {
@@ -33,8 +34,17 @@ namespace REST_GUI
             string URL = "https://localhost:44319/";
             client = new RestClient(URL);
             RestRequest request = new RestRequest("api/getvalues");
-            RestResponse numOfThings = client.Get(request);
-            TotalNum.Text = numOfThings.Content;
+            
+            try
+            {
+                RestResponse numOfThings = client.Get(request);
+                TotalNum.Text = numOfThings.Content;
+                numInd = Int32.Parse(numOfThings.Content);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Database connection problem!");
+            }
 
         }
 
@@ -42,18 +52,30 @@ namespace REST_GUI
         {
             //On click, Get the index....
             int index = Int32.Parse(IndexNum.Text);
-            //Then, set up and call the API method...
-            RestRequest request = new RestRequest("api/getvalues/" + index.ToString());
-            RestResponse resp = client.Get(request);
-            //And now use the JSON Deserializer to deseralize our object back to the class we want
-            DataIntermed dataIntermed = JsonConvert.DeserializeObject<DataIntermed>(resp.Content);
-            //And now, set the values in the GUI!
-            FNameBox.Text = dataIntermed.firstName;
-            LNameBox.Text = dataIntermed.lastName;
-            BalanceBox.Text = dataIntermed.balance.ToString("C");
-            AcctNoBox.Text = dataIntermed.accNo.ToString();
-            PinBox.Text = dataIntermed.pin.ToString("D4");
-            ImageSec.Source = BitmapImageConverter(dataIntermed.profilePic);
+
+            if (index > numInd || index <= 0)
+            {
+                Console.WriteLine("Index out of bound");
+                MessageBox.Show("Enter index within range");
+
+            }
+
+            else
+            {
+                //Then, set up and call the API method...
+                RestRequest request = new RestRequest("api/getvalues/" + index.ToString());
+                RestResponse resp = client.Get(request);
+                //And now use the JSON Deserializer to deseralize our object back to the class we want
+                DataIntermed dataIntermed = JsonConvert.DeserializeObject<DataIntermed>(resp.Content);
+                //And now, set the values in the GUI!
+                FNameBox.Text = dataIntermed.firstName;
+                LNameBox.Text = dataIntermed.lastName;
+                BalanceBox.Text = dataIntermed.balance.ToString("C");
+                AcctNoBox.Text = dataIntermed.accNo.ToString();
+                PinBox.Text = dataIntermed.pin.ToString("D4");
+                ImageSec.Source = BitmapImageConverter(dataIntermed.profilePic);
+            }
+            
             
             //On click, Get the index....
             try
@@ -75,6 +97,7 @@ namespace REST_GUI
 
         private void SearchButthon_Click(object sender, RoutedEventArgs e)
         {
+           
             //Make a search class
             SearchData mySearch = new SearchData();
             mySearch.searchStr = SearchBox.Text;
@@ -86,12 +109,22 @@ namespace REST_GUI
             //Deserialize the result
             DataIntermed dataIntermed = JsonConvert.DeserializeObject<DataIntermed>(resp.Content);
             //aaaaand input the data
-            FNameBox.Text = dataIntermed.firstName;
-            LNameBox.Text = dataIntermed.lastName;
-            BalanceBox.Text = dataIntermed.balance.ToString("C");
-            AcctNoBox.Text = dataIntermed.accNo.ToString();
-            PinBox.Text = dataIntermed.pin.ToString("D4");
-            ImageSec.Source = BitmapImageConverter(dataIntermed.profilePic);
+            if (dataIntermed != null)
+            {
+                FNameBox.Text = dataIntermed.firstName;
+                LNameBox.Text = dataIntermed.lastName;
+                BalanceBox.Text = dataIntermed.balance.ToString("C");
+                AcctNoBox.Text = dataIntermed.accNo.ToString();
+                PinBox.Text = dataIntermed.pin.ToString("D4");
+                ImageSec.Source = BitmapImageConverter(dataIntermed.profilePic);
+
+
+            }
+            else
+            {
+                MessageBox.Show("Name is not available in database !");
+            }
+
 
         }
 

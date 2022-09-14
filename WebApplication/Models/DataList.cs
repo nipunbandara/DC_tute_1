@@ -22,8 +22,8 @@ namespace WebApplication.Models
             int imageId = 0;
             string path = "";
 
-            //loop to generate 100 users with random data
-            for (int i = 0; i < 10; i++)
+            //loop to generate users with random data
+            for (int i = 0; i < 100000; i++)
             {
                 DataStruct account = new DataStruct();
                 account.firstName = firstNames[random.Next(0, 10)];

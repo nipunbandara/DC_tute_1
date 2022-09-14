@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
+using WebApplication.Models;
 
 namespace WebApplication
 {
@@ -9,6 +11,7 @@ namespace WebApplication
     {
         public static void Register(HttpConfiguration config)
         {
+            config.Services.Replace(typeof(IExceptionHandler), new ErrorDetails());
             // Web API configuration and services
 
             // Web API routes

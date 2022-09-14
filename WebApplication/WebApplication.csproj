@@ -165,6 +165,7 @@
     </Compile>
     <Compile Include="Models\DataList.cs" />
     <Compile Include="Models\DataStruct.cs" />
+    <Compile Include="Models\ErrorDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

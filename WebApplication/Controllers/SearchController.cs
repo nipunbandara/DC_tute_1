@@ -16,7 +16,11 @@ namespace WebApplication.Controllers
 
             foreach (DataStruct user in list.GetDataList())
             {
-                if (user.firstName == SD.searchStr)
+                if(SD == null)
+                {
+                    return NotFound();
+                }
+                if (user.firstName.ToLower() == SD.searchStr.ToLower())
                 {
                     dataI.accNo = user.accNo;
                     dataI.balance = user.balance;
@@ -26,6 +30,10 @@ namespace WebApplication.Controllers
                     dataI.profilePic = user.profilePic;
 
                     return Ok(dataI);
+                }
+                else
+                {
+                    return NotFound();
                 }
             }
 
