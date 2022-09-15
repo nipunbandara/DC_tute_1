@@ -16,10 +16,7 @@ namespace WebApplication.Controllers
 
             foreach (DataStruct user in list.GetDataList())
             {
-                if(SD == null)
-                {
-                    return NotFound();
-                }
+               
                 if (user.firstName.ToLower() == SD.searchStr.ToLower())
                 {
                     dataI.accNo = user.accNo;
@@ -28,27 +25,14 @@ namespace WebApplication.Controllers
                     dataI.firstName = user.firstName;
                     dataI.lastName = user.lastName;
                     dataI.profilePic = user.profilePic;
-
+                    
                     return Ok(dataI);
                 }
-                else
-                {
-                    return NotFound();
-                }
+               
             }
 
             Thread.Sleep(5000);
 
-            /* DataIntermed dataI = new DataIntermed();
-             DataList list = new DataList();
-             dataI.accNo = list.GetAcctNoByIndex(2);
-             dataI.balance = list.GetBalanceByIndex(2);
-             dataI.pin = list.GetPINByIndex(2);
-             dataI.firstName = SD.searchStr;
-             dataI.lastName = SD.searchStr;
-             dataI.profilePic = list.GetProfilePicByIndex(2);
-
-             return Ok(dataI);*/
             return NotFound();
         }
     }

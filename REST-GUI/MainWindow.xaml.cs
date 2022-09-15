@@ -34,7 +34,7 @@ namespace REST_GUI
             string URL = "https://localhost:44319/";
             client = new RestClient(URL);
             RestRequest request = new RestRequest("api/getvalues");
-            
+
             try
             {
                 RestResponse numOfThings = client.Get(request);
@@ -75,8 +75,8 @@ namespace REST_GUI
                 PinBox.Text = dataIntermed.pin.ToString("D4");
                 ImageSec.Source = BitmapImageConverter(dataIntermed.profilePic);
             }
-            
-            
+
+
             //On click, Get the index....
             try
             {
@@ -97,7 +97,7 @@ namespace REST_GUI
 
         private void SearchButthon_Click(object sender, RoutedEventArgs e)
         {
-           
+
             //Make a search class
             SearchData mySearch = new SearchData();
             mySearch.searchStr = SearchBox.Text;
@@ -136,29 +136,5 @@ namespace REST_GUI
             image.EndInit();
             return image;
         }
-
-
-        /* private void SearchButthon_Click(object sender, RoutedEventArgs e)
-         {
-             string fName = "", lName = "";
-             int bal = 0;
-             uint acct = 0, pin = 0;
-             Bitmap profilePic = null;
-             foob.GetValuesForSearch(SearchBox.Text, out acct, out pin, out bal, out fName, out lName, out profilePic);
-             FNameBox.Text = fName;
-             LNameBox.Text = lName;
-             BalanceBox.Text = bal.ToString("C");
-             AcctNoBox.Text = acct.ToString();
-             PinBox.Text = pin.ToString("D4");
-             ImageSec.Source = BitmapToImageSource(profilePic);
-         }
-
-         //Bitmap to bitmapImage conversion method
-         private ImageSource BitmapToImageSource(Bitmap bitmap)
-         {
-             var handle = bitmap.GetHbitmap();
-
-             return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-         }*/
     }
 }
