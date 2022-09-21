@@ -46,40 +46,101 @@ namespace CRUDS_GUI
             RestResponse restResponse = restClient.Execute(restRequest);
 
             BankingUser user = JsonConvert.DeserializeObject<BankingUser>(restResponse.Content);
-            AcctNoBox.Text = user.accNo.ToString();
-            FNameBox.Text = user.firstName.ToString();
-            LNameBox.Text= user.lastName.ToString();
-            PinBox.Text = user.pin.ToString();
-            BalanceBox.Text = user.balance.ToString();
-            ImageSec.Source = BinaryToImage(user.pictureData);
-            profilep = user.pictureData;
+
+            if(user != null)
+            {
+                AcctNoBox.Text = user.accNo.ToString();
+                FNameBox.Text = user.firstName.ToString();
+                LNameBox.Text = user.lastName.ToString();
+                PinBox.Text = user.pin.ToString();
+                BalanceBox.Text = user.balance.ToString();
+                ImageSec.Source = BinaryToImage(user.pictureData);
+                profilep = user.pictureData;
+            }
+            else
+            {
+                MessageBox.Show("Account is not available in database !");
+            }
+
 
         }
 
         private void InsertButton_Click(object sender, RoutedEventArgs e)
         {
             BankingUser user = new BankingUser();
-            user.accNo = AcctNoBox.Text;
-            user.balance = Int32.Parse(BalanceBox.Text);
-            user.pin = Int32.Parse(PinBox.Text);
-            user.firstName = FNameBox.Text;
-            user.lastName = LNameBox.Text;
-            user.pictureData = ImageToBinary(FileNameTextBox.Text);
-
-
-            RestRequest restRequest = new RestRequest("api/BankingUsers", Method.Post);
-            restRequest.AddJsonBody(JsonConvert.SerializeObject(user));
-            RestResponse restResponse = restClient.Execute(restRequest);
-
-            BankingUser returnStudent = JsonConvert.DeserializeObject<BankingUser>(restResponse.Content);
-            if (returnStudent != null)
+            if (AcctNoBox.Text == "")
             {
-                MessageBox.Show("Data Successfully Inserted");
+                MessageBox.Show("Enter Account Number!");
             }
             else
             {
-                MessageBox.Show("Error details:" + restResponse.Content);
+                user.accNo = AcctNoBox.Text;
             }
+            if (BalanceBox.Text == "")
+            {
+                MessageBox.Show("Enter Account Balance!");
+            }
+            else
+            {
+                user.balance = Int32.Parse(BalanceBox.Text);
+            }
+            if (PinBox.Text == "")
+            {
+                MessageBox.Show("Enter Account PIN!");
+            }
+            else
+            {
+                user.pin = Int32.Parse(PinBox.Text);
+            }
+            if (FNameBox.Text == "")
+            {
+                MessageBox.Show("Enter First Name!");
+            }
+            else
+            {
+                user.firstName = FNameBox.Text;
+            }
+            if (LNameBox.Text == "")
+            {
+                MessageBox.Show("Enter Last Name!");
+            }
+            else
+            {
+                user.lastName = LNameBox.Text;
+            }
+
+            if (FileNameTextBox.Text == "")
+            {
+                MessageBox.Show("Select Profile Picture");
+            }
+            else
+            {
+                user.pictureData = ImageToBinary(FileNameTextBox.Text);
+            }
+
+            try
+            {
+                RestRequest restRequest = new RestRequest("api/BankingUsers", Method.Post);
+                restRequest.AddJsonBody(JsonConvert.SerializeObject(user));
+                RestResponse restResponse = restClient.Execute(restRequest);
+
+                BankingUser returnStudent = JsonConvert.DeserializeObject<BankingUser>(restResponse.Content);
+                if (returnStudent != null)
+                {
+                    MessageBox.Show("Data Successfully Inserted");
+                }
+                else
+                {
+                    MessageBox.Show("Error details:" + restResponse.Content);
+                }
+
+            }
+            catch
+            {
+                MessageBox.Show("DataBase Error");
+
+            }
+
 
         }
 

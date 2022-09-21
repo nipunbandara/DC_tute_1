@@ -13,12 +13,7 @@
         <TextBox x:Name="AcctNoBox" HorizontalAlignment="Left" Height="28" Margin="152,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
         <TextBox x:Name="PinBox" HorizontalAlignment="Left" Height="28" Margin="152,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" />
         <Border BorderBrush="#FF41657F" BorderThickness="1" HorizontalAlignment="Center" Height="2" Margin="0,105,0,0" VerticalAlignment="Top" Width="800" Background="#FF41657F"/>
-
-        <TextBox x:Name="TotalNum" HorizontalAlignment="Left" Height="24" Margin="158,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
-        <TextBlock HorizontalAlignment="Left" Height="35" Margin="16,25,0,0" TextWrapping="Wrap" Text="Total Number of Users" VerticalAlignment="Top" Width="124" RenderTransformOrigin="0.645,-0.155"/>
-        <TextBox x:Name="IndexNum" HorizontalAlignment="Left" Height="24" Margin="158,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
         <Image Name="ImageSec" Margin="496,134,140,126" />
-        <TextBlock HorizontalAlignment="Left" Height="35" Margin="16,65,0,0" TextWrapping="Wrap" Text="Enter Index of user" VerticalAlignment="Top" Width="124" RenderTransformOrigin="0.645,-0.155"/>
         <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="27" Margin="318,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134"/>
 
         <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Height="28" Margin="502,22,0,0" VerticalAlignment="Top" Width="58" Click="SearchButton_Click"/>
