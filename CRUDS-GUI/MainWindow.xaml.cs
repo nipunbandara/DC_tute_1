@@ -128,6 +128,14 @@ namespace CRUDS_GUI
                 if (returnStudent != null)
                 {
                     MessageBox.Show("Data Successfully Inserted");
+
+                    AcctNoBox.Text = "";
+                    FNameBox.Text = "";
+                    LNameBox.Text = "";
+                    PinBox.Text = "";
+                    BalanceBox.Text = "";
+                    ImageSec.Source = null;
+                    FileNameTextBox.Text = "";
                 }
                 else
                 {
@@ -152,7 +160,15 @@ namespace CRUDS_GUI
             user.pin = Int32.Parse(PinBox.Text);
             user.firstName = FNameBox.Text;
             user.lastName = LNameBox.Text;
-            user.pictureData = profilep;
+            
+            if(FileNameTextBox.Text == "")
+            {
+                user.pictureData = profilep;
+            }
+            else
+            {
+                user.pictureData = ImageToBinary(FileNameTextBox.Text);
+            }
 
 
             RestRequest restRequest = new RestRequest($"api/BankingUsers/{user.accNo}", Method.Put);
@@ -193,6 +209,7 @@ namespace CRUDS_GUI
                 PinBox.Text = "";
                 BalanceBox.Text = "";
                 ImageSec.Source = null;
+                FileNameTextBox.Text = "";
             }
             else
             {
@@ -200,7 +217,7 @@ namespace CRUDS_GUI
             }
         }
 
-        private void BrowsButton_Click(object sender, EventArgs e)
+        private void BrowseButton_Click(object sender, EventArgs e)
         {
 
             // Create OpenFileDialog

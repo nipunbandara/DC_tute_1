@@ -7,30 +7,31 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="FNameBox" HorizontalAlignment="Left" Height="26" Margin="152,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <TextBox x:Name="LNameBox" HorizontalAlignment="Left" Height="26" Margin="152,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <TextBox x:Name="BalanceBox" HorizontalAlignment="Left" Height="26" Margin="152,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <TextBox x:Name="AcctNoBox" HorizontalAlignment="Left" Height="28" Margin="152,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <TextBox x:Name="PinBox" HorizontalAlignment="Left" Height="28" Margin="152,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" />
-        <Border BorderBrush="#FF41657F" BorderThickness="1" HorizontalAlignment="Center" Height="2" Margin="0,105,0,0" VerticalAlignment="Top" Width="800" Background="#FF41657F"/>
-        <Image Name="ImageSec" Margin="496,134,140,126" />
+        <TextBox x:Name="FNameBox" HorizontalAlignment="Left" Height="26" Margin="322,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="LNameBox" HorizontalAlignment="Left" Height="26" Margin="322,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="BalanceBox" HorizontalAlignment="Left" Height="26" Margin="322,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="AcctNoBox" HorizontalAlignment="Left" Height="28" Margin="322,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="PinBox" HorizontalAlignment="Left" Height="28" Margin="322,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" />
+        <Image Name="ImageSec" Margin="572,144,64,116" />
         <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="27" Margin="318,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134"/>
 
         <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Height="28" Margin="502,22,0,0" VerticalAlignment="Top" Width="58" Click="SearchButton_Click"/>
-        <Button x:Name="InsertButton" Content="Insert" HorizontalAlignment="Left" Height="26" Margin="175,383,0,0" VerticalAlignment="Top" Width="61" Click="InsertButton_Click"/>
+        <Button x:Name="InsertButton" Content="Insert" HorizontalAlignment="Left" Height="26" Margin="87,159,0,0" VerticalAlignment="Top" Width="61" Click="InsertButton_Click"/>
 
-        <TextBox Height="25" HorizontalAlignment="Left" Margin="152,339,0,0" Name="FileNameTextBox"
+        <TextBox Height="25" HorizontalAlignment="Left" Margin="322,353,0,0" Name="FileNameTextBox"
                  VerticalAlignment="Top" Width="168" />
-        <Button Content="Browse" Height="20" HorizontalAlignment="Left" Margin="336,342,0,0"
-                Name="button1" VerticalAlignment="Top" Width="57" Click="BrowsButton_Click" />
-        <TextBlock HorizontalAlignment="Left" Height="24" Margin="67,139,0,0" TextWrapping="Wrap" Text="First Name" VerticalAlignment="Top" Width="65" RenderTransformOrigin="0.645,-0.155"/>
-        <TextBlock HorizontalAlignment="Left" Height="24" Margin="67,180,0,0" TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Top" Width="65" RenderTransformOrigin="0.645,-0.155"/>
-        <TextBlock HorizontalAlignment="Left" Height="24" Margin="67,221,0,0" TextWrapping="Wrap" Text="Balance" VerticalAlignment="Top" Width="65" RenderTransformOrigin="0.645,-0.155"/>
-        <TextBlock HorizontalAlignment="Left" Height="24" Margin="67,254,0,0" TextWrapping="Wrap" Text="Account No" VerticalAlignment="Top" Width="65" RenderTransformOrigin="0.645,-0.155"/>
-        <TextBlock HorizontalAlignment="Left" Height="24" Margin="67,293,0,0" TextWrapping="Wrap" Text="PIN" VerticalAlignment="Top" Width="65" RenderTransformOrigin="0.645,-0.155"/>
-        <TextBlock HorizontalAlignment="Left" Height="24" Margin="67,340,0,0" TextWrapping="Wrap" Text="Profile Pic" VerticalAlignment="Top" Width="65" RenderTransformOrigin="0.645,-0.155"/>
-        <Button x:Name="UpdateButton" Content="Update" HorizontalAlignment="Left" Height="26" Margin="271,383,0,0" VerticalAlignment="Top" Width="61" Click="UpdateButton_Click"/>
-        <Button x:Name="UpdateButton_Copy" Content="Delete" HorizontalAlignment="Left" Height="26" Margin="364,383,0,0" VerticalAlignment="Top" Width="62" Click="DeleteButton_Click"/>
+        <Button Content="Browse" Height="20" HorizontalAlignment="Left" Margin="506,356,0,0"
+                Name="button1" VerticalAlignment="Top" Width="56" Click="BrowseButton_Click" />
+        <Border BorderBrush="#FF41657F" BorderThickness="1" HorizontalAlignment="Center" Height="2" Margin="0,105,0,0" VerticalAlignment="Top" Width="800" Background="#FF41657F"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="24" Margin="236,153,0,0" TextWrapping="Wrap" Text="First Name" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.645,-0.155"/>
+        <TextBlock HorizontalAlignment="Left" Height="24" Margin="236,194,0,0" TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.645,-0.155"/>
+        <TextBlock HorizontalAlignment="Left" Height="24" Margin="236,235,0,0" TextWrapping="Wrap" Text="Balance" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.645,-0.155"/>
+        <TextBlock HorizontalAlignment="Left" Height="24" Margin="236,268,0,0" TextWrapping="Wrap" Text="Account No" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.645,-0.155"/>
+        <TextBlock HorizontalAlignment="Left" Height="24" Margin="236,307,0,0" TextWrapping="Wrap" Text="PIN" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.645,-0.155"/>
+        <TextBlock HorizontalAlignment="Left" Height="24" Margin="236,354,0,0" TextWrapping="Wrap" Text="Profile Pic" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.645,-0.155"/>
+        <Button x:Name="UpdateButton" Content="Update" HorizontalAlignment="Left" Height="26" Margin="87,247,0,0" VerticalAlignment="Top" Width="61" Click="UpdateButton_Click"/>
+        <Button x:Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Height="26" Margin="87,319,0,0" VerticalAlignment="Top" Width="62" Click="DeleteButton_Click"/>
 
 
     </Grid>
