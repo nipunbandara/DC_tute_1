@@ -5,26 +5,38 @@
 }
 <div id="studentForm">
     <form>
-      <input type="text" id="SId" name="SId" placeholder="Student ID" />
-      <input type="text" id="SName" name="SName" placeholder="Student Name" />
-      <input type="text" id="SUni" name="SUni" placeholder="Student University" />
+      <input type="text" id="accNo" name="accNo" placeholder="Account No" />
+      <input type="text" id="firstName" name="firstName" placeholder="First Name" />
+      <input type="text" id="lastName" name="lastName" placeholder="Last University" />
+      <input type="text" id="pin" name="pin" placeholder="PIN" />
+      <input type="text" id="balance" name="balance" placeholder="Balance" />
+      <label for="myfile">Select a Image:</label>
+      @*<input type="file" id="fileUpload" name="fileUpload"><br><br>*@
+      <input type="file" id="imageIn" />
+
     </form>
-    <button id="search" onclick="search()">Search</button>
     <button id="insert" onclick="insert()">Insert</button>
+    <button id="search" onclick="search()">Search</button>
+    <button id="update" onclick="updateUser()">Update</button>
+    <button id="delete" onclick="deleteUser()">Delete</button>
+    <img style = "height:200px" id="ItemPreview" src="">
 </div>
 <script>
     function search()
     {
         $.ajax({
-            url: '/banking/search/'+ $('#SId').val(),
-            type: 'get',
+            url: '/banking/search/'+ $('#accNo').val(),
+            type: 'GET',
             contentType: 'application/json',
             processData: false,
             success: function (data, textStatus, jQxhr) 
             {
                 var obj = JSON.parse(data);
-                $("#SName").val(obj.accNo);
-                $("#SUni").val(obj.firstName);
+                $("#firstName").val(obj.firstName);
+                $("#lastName").val(obj.lastName);
+                $("#pin").val(obj.pin);
+                $("#balance").val(obj.balance);
+                $('#ItemPreview').attr('src', `data:image/png;base64,${obj.pictureData}`);
             },
             error: function (jqXhr, textStatus, errorThrown) 
             {
@@ -41,13 +53,12 @@
             contentType: 'application/json',
             data: JSON.stringify(
             {
-                "accNo": $('#SId').val(),
-                "firstName": $("#SName").val(),
-                "lastName": $("#SUni").val(),
-                "pin": 13,
-                "balance": 451384,
+                "accNo": $('#accNo').val(),
+                "firstName": $("#firstName").val(),
+                "lastName": $("#lastName").val(),
+                "pin": $("#pin").val(),
+                "balance": $("#balance").val(),
                 "pictureData": ""
-
             }),
             success: function(data, textStatus, jQxhr)
             {
@@ -61,6 +72,87 @@
                 console.log(error);
             }
         });
+    }
+
+    function updateUser() 
+    { 
+        $.ajax({
+            type: 'PUT',
+            url: '/banking/update/'+ $('#accNo').val(),
+            contentType: 'application/json',
+            data: JSON.stringify(
+            {
+                "accNo": $('#accNo').val(),
+                "firstName": $("#firstName").val(),
+                "lastName": $("#lastName").val(),
+                "pin": $("#pin").val(),
+                "balance": $("#balance").val(),
+                "pictureData": ""
+
+            }),
+            success: function(data, textStatus, jQxhr)
+            {
+                alert("Data Updated");
+            },
+            error: function(xhr, textStatus, error)
+            {
+                console.log(xhr.statusText);
+                console.log(textStatus);
+                console.log(error);
+            }
+        });
+    }
+
+
+    function deleteUser()
+    {
+        $.ajax({
+            url: '/banking/delete/'+ $('#accNo').val(),
+            type: 'DELETE',
+            contentType: 'application/json',
+            processData: false,
+            success: function (data, textStatus, jQxhr) 
+            {
+                alert("Data Deleted");
+                $("#firstName").val("");
+                $("#lastName").val("");
+                $("#pin").val("");
+                $("#balance").val("");
+            },
+            error: function (jqXhr, textStatus, errorThrown) 
+            {
+                console.log(errorThrown);
+            } 
+        });
+    }
+    /*var p;
+    var canvas = document.createElement("canvas");
+    var img1=document.createElement("img"); 
+
+    function getBase64Image(){     
+        p=document.getElementById("fileUpload").value;
+        img1.setAttribute('src', p); 
+        canvas.width = img1.width; 
+        canvas.height = img1.height; 
+        var ctx = canvas.getContext("2d"); 
+        ctx.drawImage(img1, 0, 0); 
+        var dataURL = canvas.toDataURL("image/png");
+        alert("from getbase64 function"+dataURL );    
+        return dataURL;
+    } 
+
+    function encodeImageFileAsURL(element) {
+        var file = element.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            console.log('RESULT', reader.result)
+        }
+        reader.readAsDataURL(file);
+    }*/
+    function ImageBinary (file) {
+
+        const reader = new FileReader();
+        return reader.readAsBinaryString(file);
     }
 
 </script>
