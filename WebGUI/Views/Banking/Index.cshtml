@@ -47,6 +47,15 @@
 
     function insert() 
     { 
+        var imgdata = ImageBinary(document.getElementById("imageIn").files)
+        var object = {
+            "accNo": $('#accNo').val(),
+            "firstName": $("#firstName").val(),
+            "lastName": $("#lastName").val(),
+            "pin": $("#pin").val(),
+            "balance": $("#balance").val(),
+            "pictureData": 
+        }
         $.ajax({
             type: 'POST',
             url: '/banking/insert/',
